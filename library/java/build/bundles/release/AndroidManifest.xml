@@ -1,0 +1,4 @@
+<!-- From: file:/C:/Users/ericz/AndroidStudioProjects/CameraTest/library/java/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2480" android:versionName="2.4.8" package="org.opencv">
+
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="19"/>
+</manifest>

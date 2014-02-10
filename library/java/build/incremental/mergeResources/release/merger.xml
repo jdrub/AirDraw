@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="C:\Users\ericz\AndroidStudioProjects\CameraTest\library\java\src\main\res" >
+            <file
+                path="C:\Users\ericz\AndroidStudioProjects\CameraTest\library\java\src\main\res\values\attrs.xml"
+                qualifiers="" >
+                <declare-styleable name="CameraBridgeViewBase" >
+                    <attr
+                        name="show_fps"
+                        format="boolean" />
+                    <attr
+                        name="camera_id"
+                        format="integer" >
+                        <enum
+                            name="any"
+                            value="-1" />
+                        <enum
+                            name="back"
+                            value="99" />
+                        <enum
+                            name="front"
+                            value="98" />
+                    </attr>
+                </declare-styleable>
+            </file>
+        </source>
+        <source path="C:\Users\ericz\AndroidStudioProjects\CameraTest\library\java\build\res\rs\release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\Users\ericz\AndroidStudioProjects\CameraTest\library\java\src\release\res" />
+    </dataSet>
+
+</merger>
