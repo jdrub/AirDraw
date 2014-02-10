@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>Three.js</title>
+		<style>canvas { width: 100%; height: 98% }</style>
+	</head>
+	<body>
+		<script src="three.min.js"></script>
+		<script src="OrbitControls.js"></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.2/firebase.js'></script>
+		<script>
+			var dataRef = new Firebase('https://3d-draw.firebaseio.com/data');
+			dataRef.on('value', function(snapshot) {
+				var sumX = 0;
+				var sumY = 0;
+			JSON.parse(snapshot.val()).forEach( function (elem) {
+					//var geometry = new THREE.CubeGeometry(5,5,5);
+					//var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+					//var cubeN = new THREE.Mesh(geometry, material);
+					var geoLine = new THREE.Geometry();
+			geoLine.vertices.push( new THREE.Vector3(sumX, sumY, 0) );
+sumX += elem["x"]*-1/5;
+					sumY += elem["y"]/5;
+			geoLine.vertices.push( new THREE.Vector3(sumX, sumY, 0) );
+//cubeN.position = new THREE.Vector3( sumX, sumY, 0 );	
+					//scene.add(cubeN);
+var line = new THREE.Line(geoLine, new THREE.LineDashedMaterial( { color: 0xffaa00, linewidth: 15 } ), THREE.LinePieces );
+scene.add(line);
+				});
+			});
+
+			var dataRef2 = new Firebase('https://3d-draw.firebaseio.com/data2');
+			dataRef2.on('value', function(snapshot) {
+				var sumXX = 0;
+				var sumYY = 0;
+ 				
+JSON.parse(snapshot.val()).forEach( function (elem) {
+					var geoLine = new THREE.Geometry();
+			geoLine.vertices.push( new THREE.Vector3(sumXX, sumYY, 0) );
+sumXX += elem["x"]*-1/5;
+					sumYY += elem["y"]/5;
+			geoLine.vertices.push( new THREE.Vector3(sumXX, sumYY, 0) );
+//cubeN.position = new THREE.Vector3( sumXX, sumYY, 0 );	
+					//scene.add(cubeN);
+var line = new THREE.Line(geoLine, new THREE.LineDashedMaterial( { color: 0x80a680, linewidth: 15 } ), THREE.LinePieces );
+scene.add(line);
+				});
+			});
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10000);
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
+
+			var geometry = new THREE.CubeGeometry(15,15,15);
+			var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+		
+			var cube = new THREE.Mesh(geometry, material);
+
+			cube.position = new THREE.Vector3( 0, 0, 0 );
+			//scene.add(cube);
+			camera.position.z = 75;
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+			
+			function animate() {
+			requestAnimationFrame(animate);
+			renderer.render(scene, camera);
+			controls.update();
+			}
+			animate();
+		</script>
+	</body>
+</html>
